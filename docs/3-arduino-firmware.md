@@ -35,7 +35,7 @@
 | `MQTT_BROKER_HOST` | HiveMQ Cloud 호스트 (포트 제외) |
 | `MQTT_USERNAME` / `MQTT_PASSWORD` | HiveMQ Cloud 인증 |
 
-- 포트: **8883** (TLS) 고정. HiveMQ Cloud는 1883 비암호화 미지원 시 8883만 사용.
+- 포트: 아두이노는 **8883** (MQTT over TCP+TLS) 사용. 8884(WebSocket)는 아두이노 미지원.
 - Client ID: 스케치 기본값 `smartfarm-arduino`. 동일 브로커에서 여러 장치 시 각자 고유 값 사용.
 
 ---
@@ -120,7 +120,9 @@ HIGH = ON, LOW = OFF. 실제 부하는 릴레이 모듈 또는 모스펫으로 �
 
 ## 8. 다음 단계
 
-**4단계**: MQTT(HiveMQ) 연동 — HiveMQ Cloud 토픽 설계, 웹/백엔드 구독·발행 구조.
+**5단계**: 백엔드/API — Vercel Functions로 HiveMQ Cloud ↔ Supabase 연동, 인증·권한
+
+(4단계 완료: [4-mqtt-hivemq.md](./4-mqtt-hivemq.md))
 
 ---
 

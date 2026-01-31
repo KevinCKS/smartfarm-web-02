@@ -52,7 +52,7 @@ git push -u origin main
 
 1. [HiveMQ Cloud](https://www.hivemq.com/mqtt-cloud-broker/) 가입 후 **Cluster** 생성
 2. **Connect** 탭에서 확인:
-   - **Broker URL** (예: `ssl://xxxxx.s1.eu.hivemq.cloud:8883`) → `MQTT_BROKER_URL`
+   - **Broker URL** (8883: `ssl://host:8883` / 8884 WebSocket: `wss://host:8884`) → `MQTT_BROKER_URL`
    - **Username** → `MQTT_USERNAME`
    - **Password** → `MQTT_PASSWORD`
 3. **Client ID** 는 아두이노/웹 서버 각각 고유 값 사용 (예: `smartfarm-arduino`, `smartfarm-web-api`)
