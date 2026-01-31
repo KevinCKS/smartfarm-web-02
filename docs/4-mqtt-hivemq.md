@@ -92,7 +92,7 @@ await publishActuatorCommand({ code: "led", is_on: true });
 npx tsx scripts/mqtt-subscriber.ts
 ```
 
-5단계에서 `onMessage` 콜백에 Supabase insert 로직 추가 예정.
+→ 5단계 완료: `scripts/mqtt-subscriber.ts`에서 Supabase `sensor_readings` insert 연동. [5-backend-api.md](./5-backend-api.md) 참고.
 
 ---
 
@@ -115,4 +115,4 @@ npx tsx scripts/mqtt-subscriber.ts
 
 ## 6. 다음 단계
 
-**5단계**: 백엔드/API — Vercel Functions로 HiveMQ Cloud ↔ Supabase 연동, 센서 데이터 저장·액추에이터 제어 API
+**5단계**: 백엔드/API — 완료. [5-backend-api.md](./5-backend-api.md)
