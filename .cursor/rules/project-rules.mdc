@@ -30,7 +30,7 @@ alwaysApply: true
 
 ```
 app/                     # Next.js App Router
-├── (dashboard)/         # 대시보드·모니터링·제어
+├── dashboard/           # 대시보드·모니터링·제어 (/dashboard)
 ├── api/                 # sensor, actuator, mqtt, auth
 components/              # ui, layout, dashboard, shared
 lib/                     # supabase, mqtt, utils.ts

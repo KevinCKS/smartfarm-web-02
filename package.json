@@ -4,11 +4,13 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "dev:all": "concurrently -n next,mqtt -c blue,green \"npm run dev\" \"npm run mqtt:subscribe\"",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "mqtt:subscribe": "tsx scripts/mqtt-subscriber.ts",
-    "mqtt:publish": "tsx scripts/test-publish-actuator.ts"
+    "mqtt:publish": "tsx scripts/test-publish-actuator.ts",
+    "subscriber-manager": "node scripts/subscriber-manager.js"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.2.4",
@@ -21,6 +23,7 @@
     "next": "^14.2.0",
     "react": "^18.3.0",
     "react-dom": "^18.3.0",
+    "recharts": "^3.7.0",
     "tailwind-merge": "^2.5.0"
   },
   "devDependencies": {
@@ -28,6 +31,7 @@
     "@types/react": "^18.3.0",
     "@types/react-dom": "^18.3.0",
     "autoprefixer": "^10.4.0",
+    "concurrently": "^9.1.0",
     "eslint": "^8.0.0",
     "eslint-config-next": "^14.2.0",
     "postcss": "^8.4.0",

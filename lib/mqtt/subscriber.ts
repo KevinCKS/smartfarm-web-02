@@ -36,14 +36,28 @@ export function runSensorSubscriber(
   client.on("message", (topic, buffer) => {
     if (topic !== MQTT_TOPICS.SENSOR_READINGS) return;
     try {
-      const payload = JSON.parse(buffer.toString()) as SensorReadingsPayload;
+      const raw = JSON.parse(buffer.toString()) as Record<string, unknown>;
+      const temperature =
+        typeof raw.temperature === "number"
+          ? raw.temperature
+          : typeof raw.temp === "number"
+            ? raw.temp
+            : NaN;
+      const humidity =
+        typeof raw.humidity === "number"
+          ? raw.humidity
+          : typeof raw.hum === "number"
+            ? raw.hum
+            : NaN;
+      const ec = typeof raw.ec === "number" ? raw.ec : NaN;
+      const ph = typeof raw.ph === "number" ? raw.ph : NaN;
       if (
-        typeof payload.temperature === "number" &&
-        typeof payload.humidity === "number" &&
-        typeof payload.ec === "number" &&
-        typeof payload.ph === "number"
+        Number.isFinite(temperature) &&
+        Number.isFinite(humidity) &&
+        Number.isFinite(ec) &&
+        Number.isFinite(ph)
       ) {
-        onMessage(payload);
+        onMessage({ temperature, humidity, ec, ph });
       }
     } catch {
       // ignore parse error

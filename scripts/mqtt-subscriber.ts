@@ -14,6 +14,7 @@ config({ path: ".env.local" });
 
 const supabase = createServiceRoleClient();
 
+// MQTT 메시지가 올 때마다 INSERT (값 변화 여부 무관)
 runSensorSubscriber(async (payload) => {
   console.log("[sensor]", new Date().toISOString(), payload);
 

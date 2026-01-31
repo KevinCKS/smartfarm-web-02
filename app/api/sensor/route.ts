@@ -33,7 +33,12 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    return NextResponse.json(data);
+    return NextResponse.json(data, {
+      headers: {
+        "Cache-Control": "no-store, max-age=0",
+        Pragma: "no-cache",
+      },
+    });
   } catch (err) {
     console.error("[API sensor]", err);
     return NextResponse.json(

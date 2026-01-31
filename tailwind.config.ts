@@ -48,6 +48,26 @@ const config: Config = {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
+        section: {
+          sensor: {
+            bg: "hsl(var(--section-sensor-bg))",
+            accent: "hsl(var(--section-sensor-accent))",
+          },
+          chart: {
+            bg: "hsl(var(--section-chart-bg))",
+            accent: "hsl(var(--section-chart-accent))",
+          },
+          actuator: {
+            bg: "hsl(var(--section-actuator-bg))",
+            accent: "hsl(var(--section-actuator-accent))",
+          },
+        },
+        tile: {
+          temperature: "hsl(var(--tile-temperature))",
+          humidity: "hsl(var(--tile-humidity))",
+          ec: "hsl(var(--tile-ec))",
+          ph: "hsl(var(--tile-ph))",
+        },
       },
     },
   },
