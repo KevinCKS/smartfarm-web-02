@@ -11,6 +11,16 @@ const MAX_LIMIT = 500;
  */
 export async function GET(request: NextRequest) {
   try {
+    const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+    if (!url || !serviceRoleKey) {
+      console.error("[API sensor] Missing NEXT_PUBLIC_SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY");
+      return NextResponse.json(
+        { error: "Server config: Supabase env not set. Check .env.local (NEXT_PUBLIC_SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY)." },
+        { status: 500 }
+      );
+    }
+
     const { searchParams } = new URL(request.url);
     const rawLimit = searchParams.get("limit");
     const limit = Math.min(
@@ -26,23 +36,24 @@ export async function GET(request: NextRequest) {
       .limit(limit);
 
     if (error) {
-      console.error("[API sensor]", error);
+      console.error("[API sensor] Supabase error:", error.message, error.code, error.details);
       return NextResponse.json(
-        { error: error.message },
+        { error: error.message, code: error.code },
         { status: 500 }
       );
     }
 
-    return NextResponse.json(data, {
+    return NextResponse.json(data ?? [], {
       headers: {
         "Cache-Control": "no-store, max-age=0",
         Pragma: "no-cache",
       },
     });
   } catch (err) {
-    console.error("[API sensor]", err);
+    console.error("[API sensor] Exception:", err);
+    const message = err instanceof Error ? err.message : "Internal error";
     return NextResponse.json(
-      { error: err instanceof Error ? err.message : "Internal error" },
+      { error: message },
       { status: 500 }
     );
   }

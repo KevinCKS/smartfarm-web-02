@@ -127,9 +127,9 @@ function SensorCard({
         <div className="flex items-start justify-between gap-2">
           <div
             className={cn(
-                  "sensor-card-icon flex size-11 shrink-0 items-center justify-center rounded-xl",
-                  iconBgClass
-                )}
+              "sensor-card-icon flex size-11 shrink-0 items-center justify-center rounded-xl",
+              iconBgClass
+            )}
           >
             <Icon className={cn("size-5", iconColorClass)} aria-hidden />
           </div>
